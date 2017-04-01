@@ -13,7 +13,7 @@ class VeiculosController extends Controller
      */
     public function index()
     {
-        //
+        echo("opa");
     }
 
     /**

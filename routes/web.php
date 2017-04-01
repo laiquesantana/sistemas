@@ -16,9 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 //Route::get('search/autocomplete', 'FuncionarioController@autocomplete');
 
 Route::get('/home', 'HomeController@index');
+
 Route::resource('funcionarios', 'FuncionarioController');
+Route::resource('veiculos', 'VeiculosController');
+Route::resource('pagamentos', 'PagamentoController');
+Route::resource('clientes', 'ClienteController');
 

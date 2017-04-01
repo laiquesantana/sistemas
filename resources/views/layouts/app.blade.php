@@ -46,8 +46,8 @@
                   <ul class="nav navbar-nav">
 
                         @if (Auth::check())
-                            <li><a href="{{ url('/Veiculos') }}">Cadastro Veiculos</a></li>
-                            <li><a href="{{ url('/Cliente') }}">Cadastrar Cliente</a></li>
+                            <li><a href="{{ route('/veiculos.index') }}">Cadastro Veiculos</a></li>
+                            <li><a href="{{ url('/clientes') }}">Cadastrar Cliente</a></li>
                         @endif
                          @if (Auth::check()and Auth::user()->perfil === 'admin')
                             <li><a href="{{ url('/funcionarios') }}">Usuários</a></li>
@@ -75,7 +75,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Deslogar
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
