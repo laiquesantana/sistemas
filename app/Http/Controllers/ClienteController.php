@@ -57,9 +57,7 @@ class ClienteController extends Controller
             $Cliente->endereco = $request->endereco;
             $Cliente->telefone = $request->telefone;
             $Cliente->save();     
-
-        return Redirect::route('clientes.create');
-     
+        return redirect()->route('clientes.create')->with('status', 'Cliente Cadastrado com Sucesso!');        
     }
 
     /**
@@ -81,7 +79,16 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Clientes = Cliente::find($id);
+            if (is_null($Clientes)){
+                ?>
+                <script>alert('Usuário Está Desabilitado')</script>
+                <?php
+
+                return Redirect::route('clientes.index');
+            }
+
+            return view('clientes.edit', compact('Clientes'));
     }
 
     /**
@@ -91,9 +98,19 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminRequest $request, $id)
     {
-        //
+          $Cliente = Cliente::find($id);
+         //dd($users);
+
+            $Cliente->nome = $request->nome;
+            $Cliente->email = $request->email;
+            $Cliente->cpf = $request->cpf;
+            $Cliente->endereco = $request->endereco;
+            $Cliente->telefone = $request->telefone;
+            $Cliente->save();
+
+            return redirect('home')->with('clienteAt', 'Cliente Atualizado com Sucesso!'); 
     }
 
     /**
