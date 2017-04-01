@@ -1,0 +1,51 @@
+.icon-bar
+{
+  background:green !important; /*Whatever colour you want for icon lines*/
+}
+.navbar-toggle
+{
+  background:yellow !important; /*Whatever colour you want for background */
+}
+
+  #fot{ position:fixed;
+       bottom:0;
+
+       }
+      .navbar-default{
+        background-color:rgb(193,57,45);
+
+       }
+      .navbar .nav > li > a{
+       color:#ffe6e6;
+       }
+      .navbar .nav > li > a:hover{
+        color:#000000;
+        }
+     .navbar .nav .active > a{
+      background-color:rgb(193,57,45);
+     color:#000000;
+      }
+    .navbar .nav .active > a:hover{
+    background:none;
+    color:#fff;
+    }
+  .nav .nav-divider{
+  height: 50px;
+  margin: 0 10px;
+  border-right: 1px solid #a92419;
+  border-left: 1px solid #c1392d;
+  }
+  @media(max-width: 768px) 
+ {.nav .nav-divider{
+  height: 1px;
+ margin: 0 10px;
+ background-color:#a92419;
+
+  }
+.navbar-default .navbar-toggle .icon-bar {
+background-color: #fff;
+margin:0 0 4px;
+width: 25px;
+height: 5px;
+
+ }

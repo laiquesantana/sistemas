@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/master.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -41,6 +42,17 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
+
+                  <ul class="nav navbar-nav">
+
+                        @if (Auth::check())
+                            <li><a href="{{ url('/Veiculos') }}">Cadastro Veiculos</a></li>
+                            <li><a href="{{ url('/Cliente') }}">Cadastrar Cliente</a></li>
+                        @endif
+                         @if (Auth::check()and Auth::user()->perfil === 'admin')
+                            <li><a href="{{ url('/funcionarios') }}">Usuários</a></li>
+                         @endif
+                    </ul>
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;

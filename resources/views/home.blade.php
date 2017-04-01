@@ -8,7 +8,7 @@
                 <div class="panel-heading">Painel</div>
 
                 <div class="panel-body">
-                    você está logado!
+                    Você está logado!
                 </div>
             </div>
         </div>
