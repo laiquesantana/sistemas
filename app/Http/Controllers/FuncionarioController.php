@@ -134,8 +134,30 @@ class FuncionarioController extends Controller
      * @param  \App\Funcionario  $funcionario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Funcionario $funcionario)
+     public function destroy($id)
     {
-        //
+            
+            $User=User::find($id);
+          
+            if (is_null($User)){
+               echo "Funcionário Invalido";
+               return Redirect::route('funcionarios.index')->with('Funcionário , já esta inativo');
+           }
+
+           User::find($id)->delete();
+
+           return redirect()->route('funcionarios.index')->with('sucesso, Funcionário deletado com sucesso');
+
+
     }
+
+       public function restore($id)
+       {
+
+         User::onlyTrashed()
+         ->where('id', $id)
+         ->restore();
+         return redirect()->route('funcionarios.index');
+
+     }
 }

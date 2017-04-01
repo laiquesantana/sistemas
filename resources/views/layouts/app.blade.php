@@ -47,7 +47,8 @@
 
                         @if (Auth::check())
                             <li><a href="{{ url('/veiculos') }}">Cadastrar Veiculos</a></li>
-                            <li><a href="{{ url('/clientes') }}">Cadastrar Cliente</a></li>
+                            <li><a href="{{ url('/clientes') }}">Clientes</a></li>
+                            <li><a href="{{ route('clientes.create') }}">Cadastrar Cliente</a></li>
                         @endif
                          @if (Auth::check()and Auth::user()->perfil === 'admin')
                             <li><a href="{{ url('/funcionarios') }}">Usuários</a></li>
