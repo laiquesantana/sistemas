@@ -46,7 +46,7 @@
                   <ul class="nav navbar-nav">
 
                         @if (Auth::check())
-                            <li><a href="{{ route('/veiculos.index') }}">Cadastro Veiculos</a></li>
+                            <li><a href="{{ url('/veiculos') }}">Cadastrar Veiculos</a></li>
                             <li><a href="{{ url('/clientes') }}">Cadastrar Cliente</a></li>
                         @endif
                          @if (Auth::check()and Auth::user()->perfil === 'admin')

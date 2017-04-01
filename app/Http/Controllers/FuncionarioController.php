@@ -24,6 +24,7 @@ class FuncionarioController extends Controller
     public function index()
     {
          $users = DB::table('users')->paginate(5);
+         //dd($users);
 
         return View::make('funcionarios.index', compact('users'));
     }
