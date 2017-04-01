@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Veiculo;
 use Illuminate\Http\Request;
+use DB;
+use View;
+use App\User;
+use Redirect;
 
 class VeiculosController extends Controller
 {
@@ -13,7 +18,10 @@ class VeiculosController extends Controller
      */
     public function index()
     {
-        echo("opa2222");
+        $veiculos = DB::table('veiculos')->paginate(5);
+        //dd($users);
+
+        return View::make('veiculos.index', compact('veiculos'));
     }
 
     /**

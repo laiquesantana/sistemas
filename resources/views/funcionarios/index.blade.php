@@ -18,8 +18,10 @@
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>Perfil</th>
+                                <th>Ativo</th>
                                 <th>Editar</th>
                                 <th>Desabilitar</th>
+                                <th>Ativar</th>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user )
@@ -33,6 +35,15 @@
                                      <ul>Administrador</ul>
                                      @endif
                                     </td>
+                                      <td>
+                                    @if ($user->deleted_at === NULL)
+                                     <ul>
+                                         Sim </ul>
+                                     @else ($user->deleted_at != NULL)
+                                     <ul>
+                                         Não </ul>
+                                     @endif
+                                    </td>
                                     <td><a href="{{ route('funcionarios.edit',array($user->id))}}" class="btn btn-success"> Editar</a></td>
                                     <td> <form action="{{ route('funcionarios.destroy', $user->id) }}" method="POST">
                                                 {{ csrf_field() }}
@@ -42,6 +53,7 @@
                                                     <i class="fa fa-btn fa-trash"></i>Desabilitar
                                                 </button>
                                     </form> </td>
+                                    <td> <a href="{{ route('funcionarios.active',array($user->id))}}" class="btn btn-primary"> Ativar </a></td>
                                 </tr>
                                 @endforeach
                                    {{ $users->links() }}
