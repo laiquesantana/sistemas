@@ -13,8 +13,16 @@ class CreateVeiculosTable extends Migration
      */
     public function up()
     {
-        Schema::table('veiculos', function (Blueprint $table) {
-            //
+        Schema::create('veiculos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ano');
+            $table->string('modelo');
+            $table->string('marca');
+            $table->string('placa');
+            $table->tinyInteger('ativo')->default(1);
+            $table->integer('valor_aluguel');
+            $table->string('cor');
+            $table->timestamps();
         });
     }
 
