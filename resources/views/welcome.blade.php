@@ -79,15 +79,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    XPTZ-RENT A CAR
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://www.facebook.com.br">Facebook</a>
+                    <a href="https://www.twitter.com">Twitter</a>
+                    <a href="https://laravel-news.com">Instagran</a>
+                    <a href="https://github.com/laiquesantana/sistemas">GitHub</a>
                 </div>
             </div>
         </div>
