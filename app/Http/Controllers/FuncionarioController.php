@@ -125,7 +125,7 @@ class FuncionarioController extends Controller
             $users->perfil = $request->perfil;
             $users->save();
 
-            return Redirect::route('funcionarios.index');
+            return redirect('home')->with('status', 'Usuário Atualizado com Sucesso!');
     }
 
     /**
