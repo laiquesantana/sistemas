@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    <script src= "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
     <!-- Scripts -->
     <script>
@@ -47,6 +49,7 @@
 
                         @if (Auth::check())
                             <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>
+                            <li><a href="{{ route('alugeis.index') }}">Locação de Veiculos</a></li>
                             <li><a href="{{ url('/clientes') }}">Clientes</a></li>
                             <li><a href="{{ route('clientes.create') }}">Cadastrar Cliente</a></li>
                         @endif
@@ -96,5 +99,26 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
+<script type="text/javascript">
+    $('#marcaoi').on('change',function(e){
+        console.log(e);
+        var cat_id = e.target.value;
+        //ajax
+         $.get("{{url('/ajax-marca1') }}",{id:$(this).val()}, function(data){
+
+           $('#modelo').empty();
+           $.each(data, function(index, subcatObj){
+                $('#modelo').append('<option value = "'+subcatObj.id+'">'+subcatObj.name+'</option>');
+
+           });
+
+        });
+
+    });
+
+</script>
 </body>
 </html>
+
