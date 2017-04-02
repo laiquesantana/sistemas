@@ -56,7 +56,7 @@
                        </div>              
             </div>
 
-            <div class="form-group">
+           <!--  <div class="form-group">
                   {{ Form::label('idCliente', 'Clientes :', ['class' => 'col-sm-3 control-label']) }}
                    <div class="col-md-5">
                     <select name="idCliente" id="idCliente" class="form-control input-sm">
@@ -67,15 +67,15 @@
                        </select>
                        </div>
                 </label>
-            </div>
+            </div> -->
 
-        <div class="form-group">
+       <!--  <div class="form-group">
             {{ Form::label('idVeiculo', 'Veiculos :', ['class' => 'col-sm-3 control-label']) }}
             <div class="col-sm-3">
                 {{ Form::select('idVeiculo', App\Veiculo::todosVeiculos(), null, ['class' => 'form-control', 'placeholder'=> 'selecione..']) }}
             </div>
         </div>
-
+ -->
          
 
         <div class="form-group">
