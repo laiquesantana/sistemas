@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 @section('content')
 
   {{ Form::open(
@@ -37,19 +38,19 @@
             </div>
 
             <div class="form-group">
-                  {{ Form::label('marca', 'Marca :', ['class' => 'col-sm-3 control-label']) }}
+                  {{ Form::label('marca', 'Marca :', ['class' => 'col-sm-3 control-label'])}}
                    <div class="col-md-5">
-                    <select class="form-control input-sm"  name="marcaoi" id="marcaoi">
+                    <select class="marcas"  name="marcaoi" id="marcaoi" >
                        @foreach($marcas as $marcaoi)
-                             <option value="{{$marcaoi->id}}">{{$marcaoi->marca}}</option>
+                             <option value="{{$marcaoi->marca}}">{{$marcaoi->marca}}</option>
                        @endforeach
-                        </select>
-                       </div>              
+                     </select>
+                    </div>              
             </div>
                <div class="form-group">
-                 {{ Form::label('modelo', 'Marca :', ['class' => 'col-sm-3 control-label']) }}
+                 {{ Form::label('modelo', 'Modelo :', ['class' => 'col-sm-3 control-label']) }}
                    <div class="col-md-5">
-                    <select class="form-control input-sm " name="modelo" id="modelo" >
+                    <select class="form-control" name="modelo" id="modelo" >
                         <option value=""></option>
                         </select>
                        </div>              
@@ -111,23 +112,14 @@
 {{ Form::close() }}
 
 @endsection
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $('#marcaoi').on('change',function(e){
-        console.log(e);
-        var cat_id = e.target.value;
-        //ajax
-         $.get("{{route('alugeis.index')}}",{id:$(this).val()}, function(data){
+   $(document).ready(function(){
 
-           $('#modelo').empty();
-           $.each(data, function(index, subcatObj){
-                $('#modelo').append('<option value = "'+subcatObj.id+'">'+subcatObj.name+'</option>');
-
-           });
-
-        });
-
+    $(document).on('change','marcasoi', function(){
+        console.log("change");
     });
+
+   });
 
 </script>

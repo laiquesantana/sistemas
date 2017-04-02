@@ -18,19 +18,10 @@ class AluguelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function ajax(){
-        $cat_id = Input::get('cat_id');
-        ($cat_id);
-
-        $modelo= DB::table('veiculos')->where('id', '=', $cat_id)->get();
-
-        return Response::json($modelo);
-
-    }
     public function index()
     {
-        $marcas= DB::table('veiculos')->where('deleted_at', '=', NULl)->get();
+        $marcas= DB::table('veiculos')->select('marca')->where('deleted_at', '=', NULl)->groupBy('marca')->get();
+        //$marcas= DB::table('veiculos')->where('deleted_at', '=', NULl)->get();
         $Clientes =DB::table('clientes')->where('deleted_at', '=', NULl)->get();
        // $Clientes =DB::table('clientes')->pluck('nome','id');
         return View::make('alugel.index', compact('Clientes','marcas'));

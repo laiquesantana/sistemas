@@ -15,6 +15,7 @@
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
     <script src= "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Scripts -->
     <script>
@@ -101,16 +102,20 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
 
+
+</body>
+</html>
+
 <script type="text/javascript">
     $('#marcaoi').on('change',function(e){
-        console.log(e);
-        var cat_id = e.target.value;
-        //ajax
-         $.get("{{url('/ajax-marca1') }}",{id:$(this).val()}, function(data){
-
+        var cat_id = e.target.value; 
+       //ajax
+         $.get("{{url('/ajax-marca1/') }}",{cat_id:$(this).val()}, function(data){
+                     //  console.log(data);
            $('#modelo').empty();
            $.each(data, function(index, subcatObj){
-                $('#modelo').append('<option value = "'+subcatObj.id+'">'+subcatObj.name+'</option>');
+                //console.log(subcatObj);
+                $('#modelo').append('<option value = "'+subcatObj.id+'">'+subcatObj.modelo+'</option>');
 
            });
 
@@ -119,6 +124,3 @@
     });
 
 </script>
-</body>
-</html>
-

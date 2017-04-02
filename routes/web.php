@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +13,13 @@
 
 
 Route::get('/ajax-marca1',function() {
-   $cat_id = Input::get('cat_id');
- 
-        $modelo= DB::table('veiculos')->where('id', '=', $cat_id)->get();
+     $cat_id = Input::get('cat_id');
+     $modelo= DB::table('veiculos')->select('modelo')->where('marca', '=', $cat_id)->where('deleted_at', '=', NULl)->get();
 
         return Response::json($modelo);
 
 });
 
-Route::get('/ajax-marca/{cat_id}', 'AluguelController@ajax');
 
 Route::get('/ativar/{id}', [
     'as' => 'clientes.active',
