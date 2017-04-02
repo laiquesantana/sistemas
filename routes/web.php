@@ -31,7 +31,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Route::get('search/autocomplete', 'FuncionarioController@autocomplete');
+Route::get('search',array('as'=>'search', 'uses'=>'FuncionarioController@search'));
+Route::get('search1',array('as'=>'autocomplete', 'uses'=>'FuncionarioController@autocomplete'));
 
 Route::get('/home', 'HomeController@index');
 

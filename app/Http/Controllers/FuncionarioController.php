@@ -27,6 +27,9 @@ class FuncionarioController extends Controller
          //dd($users);
 
         return View::make('funcionarios.index', compact('users'));
+
+        //$search= \Request::get('search');
+        //$funcionarios=User::where('name','LIKE','%'.$search.'%')->orderBy('id')->paginate(5);
     }
 
     /**
@@ -48,12 +51,10 @@ class FuncionarioController extends Controller
     }
 
    public function search(Request $request){
-        if($request->ajax()){
-            $term=$request->search;
-            $users= DB::table('users')->where('name','LIKE','%'.$term.'%')->paginate(5);
-            return View::make('funcionarios.search', compact('users'));
 
-        }
+            $term=$request->search;
+            $users= DB::table('users')->where('name','LIKE','%'.$term.'%')->paginate(6);
+            return View::make('funcionarios.index', compact('users'));
     }
 
 
