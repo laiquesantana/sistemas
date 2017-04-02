@@ -14,12 +14,16 @@
 Route::get('/ativar/{id}', [
     'as' => 'clientes.active',
     'uses' => 'ClienteController@restore'
-
   ]);
+
+Route::get('/ativarveiculo/{id}', [
+    'as' => 'veiculos.active',
+    'uses' => 'VeiculosController@restore'
+  ]);
+
 Route::get('/ativarfuncionario/{id}', [
     'as' => 'funcionarios.active',
     'uses' => 'funcionarioController@restore'
-
   ]);
 
 Route::get('/', function () {

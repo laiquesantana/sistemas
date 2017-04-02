@@ -46,7 +46,7 @@
                   <ul class="nav navbar-nav">
 
                         @if (Auth::check())
-                            <li><a href="{{ url('/veiculos') }}">Cadastrar Veiculos</a></li>
+                            <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>
                             <li><a href="{{ url('/clientes') }}">Clientes</a></li>
                             <li><a href="{{ route('clientes.create') }}">Cadastrar Cliente</a></li>
                         @endif
