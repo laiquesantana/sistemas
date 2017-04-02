@@ -48,15 +48,13 @@ class ClienteController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        
-       
-            $Cliente = new Cliente;
-            $Cliente->nome = $request->nome;
-            $Cliente->email = $request->email;
-            $Cliente->cpf = $request->cpf;
-            $Cliente->endereco = $request->endereco;
-            $Cliente->telefone = $request->telefone;
-            $Cliente->save();     
+        $Cliente = new Cliente;
+        $Cliente->nome = $request->nome;
+        $Cliente->email = $request->email;
+        $Cliente->cpf = $request->cpf;
+        $Cliente->endereco = $request->endereco;
+        $Cliente->telefone = $request->telefone;
+        $Cliente->save();     
         return redirect()->route('clientes.create')->with('status', 'Cliente Cadastrado com Sucesso!');        
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Veiculo;
 use Illuminate\Http\Request;
 use DB;
 use View;
-use App\User;
+use App\Veiculo;
 use Redirect;
+use App\Http\Requests\AdminRequest;
 
 class VeiculosController extends Controller
 {
@@ -31,7 +31,7 @@ class VeiculosController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('veiculos.create');
     }
 
     /**
@@ -42,7 +42,16 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Veiculo = new Veiculo;
+        $Veiculo->ano = $request->ano;
+        $Veiculo->modelo = $request->modelo;
+        $Veiculo->marca = $request->marca;
+        $Veiculo->placa = $request->placa;
+        $Veiculo->valor_aluguel = $request->valor_aluguel;
+        $Veiculo->cor = $request->cor;
+        $Veiculo->ativo = 1;
+        $Veiculo->save();     
+        return redirect()->route('veiculos.index')->with('status', 'Veiculo Cadastrado com Sucesso!');    
     }
 
     /**
@@ -64,7 +73,16 @@ class VeiculosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Veiculos = Veiculo::find($id);
+        if (is_null($Veiculos)){
+            ?>
+            <script>alert('Usuário Está Desabilitado')</script>
+            <?php
+
+            return Redirect::route('veiculos.index');
+        }
+
+        return view('veiculos.edit', compact('Veiculos'));
     }
 
     /**
@@ -76,7 +94,17 @@ class VeiculosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Veiculo = Veiculo::find($id);
+
+        $Veiculo->ano = $request->ano;
+        $Veiculo->modelo = $request->modelo;
+        $Veiculo->marca = $request->marca;
+        $Veiculo->placa = $request->placa;
+        $Veiculo->valor_aluguel = $request->valor_aluguel;
+        $Veiculo->cor = $request->cor;
+        $Veiculo->ativo = 1;
+        $Veiculo->save();     
+        return redirect()->route('veiculos.index')->with('status', 'Veiculo Atualizado com Sucesso!'); 
     }
 
     /**
@@ -87,6 +115,24 @@ class VeiculosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $veiculo=Veiculo::find($id);
+
+        if (is_null($veiculo)){
+           echo "Veiculo Invalido";
+           return Redirect::route('veiculos.index')->with('Veiculo , já esta inativo');
+        }
+
+        Veiculo::find($id)->delete();
+
+        return redirect()->route('veiculos.index')->with('status, Veiculo deletado com sucesso');
     }
+
+    public function restore($id)
+    {
+        Veiculo::onlyTrashed()
+        ->where('id', $id)
+        ->restore();
+        return redirect()->route('veiculos.index');
+    }
+
 }

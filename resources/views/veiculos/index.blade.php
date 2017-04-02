@@ -4,29 +4,45 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <a href="{{route('veiculos.create')}}" class="btn btn-primary">Inserir Novo Veiculo</a>
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                         <li>   {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <div class="panel panel-primary">
                 <div class="panel-heading">Veiculos</div>
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <a href="{{route('veiculos.create')}}" class="btn- btn-primary">Inserir Novo Veiculo</a>
                         <table class="table table-hover table-bordered clientes">
                             <thead>
-                                <th>Nº</th>
                                 <th>Ano</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>
                                 <th>Placa</th>
                                 <th>Cor</th>
                                 <th>Diaria</th>
+                                <th>Ativo</th>
                                 <th>Editar</th>
-                                <th>Desabilitar</th>
-                                <th>Ativar</th>
+                                <th>Opções</th>
+                                <th>Excluir</th>
                             </thead>
                             <tbody>
                                 @foreach ($veiculos as $veiculo )
-                                <tr>                       
-                                    <td>{{$veiculo->id}}</td>
+                                <tr>         
                                     <td>{{$veiculo->ano}}</td>
                                     <td>{{$veiculo->marca}}</td>
                                     <td>{{$veiculo->modelo}}</td>
