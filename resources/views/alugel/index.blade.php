@@ -76,7 +76,24 @@
             </div>
         </div>
  -->
-         
+        <div class="form-group">
+            {{ Form::label('cor', 'Cor :', ['class' => 'col-sm-3 control-label']) }}
+            <div class="col-sm-3">
+                {{ Form::text('cor', null, ['class' => 'form-control']) }}
+            </div>
+        </div>  
+        <div class="form-group">
+            {{ Form::label('placa', 'Placa :', ['class' => 'col-sm-3 control-label']) }}
+            <div class="col-sm-3">
+                {{ Form::text('placa', null, ['class' => 'form-control']) }}
+            </div>
+        </div> 
+        <div class="form-group">
+            {{ Form::label('ano', 'Ano :', ['class' => 'col-sm-3 control-label']) }}
+            <div class="col-sm-3">
+                {{ Form::text('ano', null, ['class' => 'form-control']) }}
+            </div>
+        </div> 
 
         <div class="form-group">
             {{ Form::label('dataLocacao', 'Data de Locação :', ['class' => 'col-sm-3 control-label']) }}

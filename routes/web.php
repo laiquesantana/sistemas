@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Input;
 
 Route::get('/ajax-marca1',function() {
      $cat_id = Input::get('cat_id');
-     $modelo= DB::table('veiculos')->select('modelo')->where('marca', '=', $cat_id)->where('deleted_at', '=', NULl)->get();
-
+     $modelo= DB::table('veiculos')->select('*')->where('marca', '=', $cat_id)->where('deleted_at', '=', NULl)->get();
         return Response::json($modelo);
 
 });
