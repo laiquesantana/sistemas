@@ -11,11 +11,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src= "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="{{ asset('js/bootstrap.js') }}" rel="stylesheet"></script>
 
     <!-- Scripts -->
     <script>
@@ -48,17 +52,16 @@
 
                   <ul class="nav navbar-nav">
 
-                        @if (Auth::check())
-                                                
-                            <li><a href="{{ url('/clientes') }}">Clientes</a></li>                           
+                        @if (Auth::check() and Auth::user()->perfil === 'user')
+                            <li><a href="{{ route('alugeis.user', Auth::user()->id) }}">Locação de Veiculos</a></li>   
                         @endif
                          @if (Auth::check()and Auth::user()->perfil != 'user')
-                            <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>  
+                         <li><a href="{{ url('/clientes') }}">Clientes</a></li>  
+                            <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>
                             <li><a href="{{ route('alugeis.index') }}">Locação de Veiculos</a></li>   
                          @endif
 
                          @if (Auth::check()and Auth::user()->perfil === 'admin')
-                            <li><a href="{{ route('clientes.create') }}">Cadastrar Funcionario</a></li>
                             <li><a href="{{ url('/funcionarios') }}">Funcionarios</a></li>
                          @endif
                          
@@ -77,23 +80,15 @@
                             <li><a href="{{ route('register') }}">Cadastrar</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
+                                <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Deslogar
-                                        </a>
-
+                                    Olá {{ Auth::user()->name }}, Clique aqui para deslogar</a>
+                                
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                </ul>
+                                
                             </li>
                         @endif
                     </ul>
@@ -106,6 +101,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/mask.js') }}" rel="stylesheet"></script>
 
 
 
@@ -117,16 +113,32 @@
         var cat_id = e.target.value; 
        //ajax
          $.get("{{url('/ajax-marca1/') }}",{cat_id:$(this).val()}, function(data){
-                     //  console.log(data);
-           $('#modelo').empty();
+           $('#idVeiculo').empty();
+           $('#idVeiculo').append('<option value = "">Selecione o modelo do Veiculo</option>');
            $.each(data, function(index, subcatObj){
-                //console.log(subcatObj);
-                $('#modelo').append('<option value = "'+subcatObj.id+'">'+subcatObj.modelo+'</option>');
-
+                $('#idVeiculo').append('<option value = "'+subcatObj.idV+'">'+subcatObj.modelo+'</option>');
            });
-
         });
+    });
 
+    $('#idVeiculo').on('change',function(e){
+        var cat_id = e.target.value; 
+       //ajax
+         $.get("{{url('/ajax-veiculo/') }}",{cat_id:$(this).val()}, function(data){           
+           $('#cor1').empty();
+           $('#placa-div').empty();
+           $('#ano-div').empty();
+           $.each(data, function(index, subcatObj){
+                $('#cor1').append('<input name="cor" type="text" id="cor" class="form-control" readonly="readonly" value="'+subcatObj.cor+'" />');
+                $('#placa-div').append('<input name="placa" type="text" id="placa" class="form-control" readonly="readonly" value="'+subcatObj.placa+'" />');
+                $('#ano-div').append('<input name="ano" type="text" id="ano" class="form-control" readonly="readonly" value="'+subcatObj.ano+'" />');
+           });
+        });
+    });
+
+    $(document).ready(function(){
+            $('.cpf').mask('000.000.000-00');
+            $('.telefone').mask('(00) 0000-0000');
     });
 
 </script>

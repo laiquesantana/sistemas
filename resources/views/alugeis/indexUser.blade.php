@@ -19,7 +19,6 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered clientes">
                             <thead>
-                                <th>Nome do Cliente</th>
                                 <th>Marca do Veiculo</th>
                                 <th>Modelo</th>
                                 <th>Cor</th>
@@ -29,15 +28,12 @@
                                 <th>Data de Devolução</th>
                                 <th>Valor</th>
                                 <th>Disponível</th>
-                                @if(Auth::user()->perfil != "user")
-                                    <th>Devoluções</th>
-                                    <th>Excluir</th>
-                                @endif
+                                <th>Devoluções</th>
+                                <th>Excluir</th>
                             </thead>
                             <tbody>
                                 @foreach ($alugueis as $aluguel)
                                 <tr> 
-                                    <td>{{$aluguel->name}}</td>
                                     <td>{{$aluguel->marca}}</td>
                                     <td>{{$aluguel->modelo}}</td>
                                     <td>{{$aluguel->cor}}</td>
@@ -55,18 +51,16 @@
                                          Não </ul>
                                      @endif
                                     </td>
-                                    @if(Auth::user()->perfil != "user")
-                                        <td> <a href="{{route('aluguel.devolucao', $aluguel->idAluguel) }}" class="btn btn-primary">Devolver</a></td>
+                                    <td> <a href="{{route('aluguel.devolucao', $aluguel->idAluguel) }}" class="btn btn-primary">Devolver</a></td>
 
-                                        <td> <form action="{{ route('alugeis.destroy', $aluguel->idAluguel) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
+                                <td> <form action="{{ route('alugeis.destroy', $aluguel->idAluguel) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
 
-                                                    <intput type="submit" class="btn btn-danger">
-                                                        <i class="fa fa-btn fa-trash"></i>Excluir
-                                                    </intput>
-                                        </form></td>
-                                    @endif
+                                                <intput type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-btn fa-trash"></i>Excluir
+                                                </intput>
+                                    </form></td>
                                 </tr>
                                 @endforeach
                                    {{$alugueis->links()}}

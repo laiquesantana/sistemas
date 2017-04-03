@@ -1,13 +1,12 @@
 @extends('layouts.app')
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel= "stylesheet">
-<script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap-3-typeahead.min.js"></script>
+
 @section('content')
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <a href="{{ route('clientes.create') }} " class="btn btn-primary">Cadastrar Funcionario</a>
             <div class="panel panel-primary">
                 <div class="panel-heading">Usuários</div>
                 <div class="panel-body">

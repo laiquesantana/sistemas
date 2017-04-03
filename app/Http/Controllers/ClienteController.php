@@ -52,8 +52,6 @@ class ClienteController extends Controller
 
     public function store(AdminRequest $request)
     {
-
-
         $Cliente = new User;
         $Cliente->name = $request->name;
         $Cliente->email = $request->email;
@@ -104,12 +102,12 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminRequest $request, $id)
+    public function update(Request $request, $id)
     {
           $Cliente = User::find($id);
          //dd($users);
 
-            $Cliente->nome = $request->nome;
+            $Cliente->name = $request->name;
             $Cliente->email = $request->email;
             $Cliente->cpf = $request->cpf;
             $Cliente->endereco = $request->endereco;

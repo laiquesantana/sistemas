@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                       <div class="col-sm-9">
                                         {{ Form::submit('Cadastrar', array('class' => 'btn btn-info')) }}
-                                       	<a href="{{route('veiculos.index')}}" class="btn btn-info">Cancelar</a>
+                                       	<a href="{{route('veiculos.index')}}" class="btn btn-danger">Cancelar</a>
                                       </div>
 
                                     </div>

@@ -37,8 +37,8 @@
                                 <th>Diaria</th>
                                 <th>Ativo</th>
                                 <th>Editar</th>
-                                <th>Opções</th>
-                                <th>Excluir</th>
+                                <th>Desabilitar</th>
+                                <th>Ativar</th>
                             </thead>
                             <tbody>
                                 @foreach ($veiculos as $veiculo )

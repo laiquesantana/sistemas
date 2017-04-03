@@ -20,13 +20,26 @@ class AluguelController extends Controller
      */
     public function index()
     {
-        $marcas= DB::table('veiculos')->select('marca')->where('deleted_at', '=', NULl)->groupBy('marca')->get();
-        //$marcas= DB::table('veiculos')->where('deleted_at', '=', NULl)->get();
-        $Clientes =DB::table('clientes')->where('deleted_at', '=', NULl)->get();
-       // $Clientes =DB::table('clientes')->pluck('nome','id');
-        return View::make('alugeis.index', compact('Clientes','marcas'));
-        
+        // $marcas= DB::table('veiculos')->select('marca')->where('deleted_at', '=', NULl)->groupBy('marca')->get();
+        // $Clientes =DB::table('clientes')->where('deleted_at', '=', NULl)->get();
+        // return View::make('alugeis.index', compact('Clientes','marcas'));
+        $alugueis = DB::table('alugueis')->select("alugueis.id as idAluguel", "idVeiculo", "idCliente", "dataLocacao", "dataDevolucao", "pagamento", "disponivel", "modelo", "marca", "placa", "ativo", "valor_aluguel", "cor", "name", "ano")
+                    ->leftJoin('veiculos', 'alugueis.idVeiculo', '=', 'veiculos.id')
+                    ->leftJoin('users', 'alugueis.idCliente', '=', 'users.id')
+                    ->paginate(5);
+        return View::make('alugeis.index', compact('alugueis'));
     }
+
+    public function indexUser($id)
+    {
+        $alugueis = DB::table('alugueis')->select("alugueis.id as idAluguel", "idVeiculo", "idCliente", "dataLocacao", "dataDevolucao", "pagamento", "disponivel", "modelo", "marca", "placa", "ativo", "valor_aluguel", "cor", "name", "ano")
+                    ->leftJoin('veiculos', 'alugueis.idVeiculo', '=', 'veiculos.id')
+                    ->leftJoin('users', 'alugueis.idCliente', '=', 'users.id')
+                    ->where("idCliente", "=", $id)
+                    ->paginate(5);
+        return View::make('alugeis.index', compact('alugueis'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +48,9 @@ class AluguelController extends Controller
      */
     public function create()
     {
-        //
+        $marcas= DB::table('veiculos')->select('marca')->where('deleted_at', '=', NULl)->groupBy('marca')->get();
+        $Clientes =DB::table('users')->where('deleted_at', '=', NULl)->where("perfil", "=", "user")->get();
+        return View::make('alugeis.create', compact('Clientes','marcas'));
     }
 
     /**
@@ -53,6 +68,7 @@ class AluguelController extends Controller
         $Alugel->dataLocacao = $request->dataLocacao;
         $Alugel->dataDevolucao = $request->dataDevolucao;
         $Alugel->pagamento = $request->pagamento;
+        $Alugel->disponivel = 0;
         $Alugel->save();     
         return redirect()->route('alugeis.index')->with('status', 'Locação Realizada com Sucesso!');        
     }
@@ -99,6 +115,25 @@ class AluguelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aluguel=Aluguel::find($id);
+
+        if (is_null($aluguel)){
+           echo "Aluguel Invalido";
+           return Redirect::route('alugeis.index')->with('Veiculo , já esta inativo');
+        }
+
+        Aluguel::find($id)->delete();
+
+        return redirect()->route('alugeis.index')->with('status, Entrada deletada com sucesso');
     }
+
+    public function devolucao($id)
+    {
+        DB::table('alugueis')
+            ->where('id', $id)
+            ->update(array('disponivel' => 1));
+            
+        return redirect()->route('alugeis.index')->with('status, Veiculo Devolvido');
+    }
+
 }

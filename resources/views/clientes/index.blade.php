@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+        @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <div class="panel panel-primary">
                 <div class="panel-heading">Clientes</div>
                 <div class="panel-body">
@@ -11,7 +17,6 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered clientes">
                             <thead>
-                                <th>N°</th>
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>CPF</th>
@@ -25,12 +30,11 @@
                             <tbody>
                                 @foreach ($clientes as $cliente )
                                 <tr> 
-                                    <td>{{$cliente->id}}</td>
                                     <td>{{$cliente->name}}</td>
                                     <td>{{$cliente->email}}</td>
-                                    <td>{{$cliente->cpf}}</td>
+                                    <td>{{format_cpf($cliente->cpf) }}</td>
                                     <td>{{$cliente->endereco}}</td>
-                                    <td>{{$cliente->telefone}}</td>
+                                    <td>{{format_telefone($cliente->telefone)}}</td>
                                     <td>
                                     @if ($cliente->deleted_at === NULL)
                                      <ul>

@@ -1,3 +1,4 @@
+@extends('layouts.app2')
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>
@@ -83,12 +84,15 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://www.facebook.com.br">Facebook</a>
-                    <a href="https://www.twitter.com">Twitter</a>
-                    <a href="https://laravel-news.com">Instagran</a>
-                    <a href="https://github.com/laiquesantana/sistemas">GitHub</a>
                 </div>
             </div>
         </div>
     </body>
 </html>
+<style type="text/css">
+    div, a{
+        color: white !important;
+
+    }
+
+</style>

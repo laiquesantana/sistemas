@@ -31,7 +31,7 @@
                                       <div class="form-group">
                                             {{ Form::label('nome', 'Nome:', ['class' => 'col-sm-3 control-label']) }}
                                             <div class="col-sm-9">
-                                                {{ Form::text('nome',  null , ['class' => ' form-control']) }}
+                                                {{ Form::text('name',  null , ['class' => ' form-control']) }}
                                             </div>
                                     </div>
 
@@ -48,7 +48,7 @@
                                     <div class="form-group">
                                             {{ Form::label('cpf', 'Cpf:', ['class' => 'col-sm-3 control-label']) }}
                                             <div class="col-sm-9">
-                                                {{ Form::text('cpf',  null , ['class' => ' form-control']) }}
+                                                {{ Form::text('cpf',  null , ['class' => ' form-control cpf']) }}
                                             </div>
                                     </div>
 
@@ -63,14 +63,14 @@
                                     <div class="form-group">
                                             {{ Form::label('telefone', 'Telefone:', ['class' => 'col-sm-3 control-label']) }}
                                             <div class="col-sm-9">
-                                                {{ Form::text('telefone',  null , ['class' => ' form-control']) }}
+                                                {{ Form::text('telefone',  null , ['class' => ' form-control telefone']) }}
                                             </div>
                                     </div>
 
                                     <div class="form-group">
                                       <div class="col-sm-9">
                                         {{ Form::submit('Atualizar', array('class' => 'btn btn-success')) }}
-                                        {{ link_to_route('funcionarios.index', 'Cancelar', $Clientes->id, array('class' => 'btn btn-danger')) }}
+                                        {{ link_to_route('clientes.index', 'Cancelar', $Clientes->id, array('class' => 'btn btn-danger')) }}
                                       </div>
 
                                     </div>

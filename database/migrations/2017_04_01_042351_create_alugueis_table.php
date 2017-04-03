@@ -24,13 +24,14 @@ class CreateAlugueisTable extends Migration
 
             $table->integer('idCliente')->unsigned();
             $table->foreign('idCliente')
-                ->references('id')->on('clientes')
+                ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->date('dataLocacao');
             $table->date('dataDevolucao');
             $table->float('pagamento');
+            $table->integer('disponivel');
             $table->timestamps();
         });
     }

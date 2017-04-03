@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Painel</div>
+                <div class="panel-heading"><center>Bem Vindo(a) a XPTZ-Rent a Car</center></div>
                 <div class="panel-body">
 
 
@@ -19,10 +19,10 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                    Você está logado!
                 </div>
             </div>
         </div>
     </div>
+    <center><img src="../images/ferrari.png" height="600px;"></center>
 </div>
 @endsection
