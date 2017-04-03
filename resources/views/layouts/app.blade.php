@@ -109,10 +109,54 @@
 </html>
 
 <script type="text/javascript">
+    $('#dataLocacao').on('change',function(e){
+        var cat_id = e.target.value; 
+       //ajax
+
+        var inicio = new Date($(this).val());
+        var fim = new Date($("#dataDevolucao").val());
+
+        var timeDiff = Math.abs(fim.getTime() - inicio.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+         $.get("{{url('/ajax-marca1/') }}",{locacao:$(this).val(), devolucao:$("#dataDevolucao").val(), cat_id:$("#marcaoi").val()}, function(data){
+           $('#idVeiculo').empty();
+           $('#idVeiculo').append('<option value = "">Selecione o modelo do Veiculo</option>');
+
+           $('#pagamento-div').empty();
+           $.each(data, function(index, subcatObj){
+                $('#idVeiculo').append('<option value = "'+subcatObj.idV+'">'+subcatObj.modelo+'</option>');
+                $('#pagamento-div').append('<input name="pagamento" type="text" id="pagamento" class="form-control" readonly="readonly" value="'+(subcatObj.valor_aluguel * diffDays )+'" />');
+           });
+        });
+    });
+
+    $('#dataDevolucao').on('change',function(e){
+        var cat_id = e.target.value; 
+       //ajax
+        var inicio = new Date($('#dataLocacao').val());
+        var fim = new Date($(this).val());
+
+        var timeDiff = Math.abs(fim.getTime() - inicio.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+       
+         $.get("{{url('/ajax-marca1/') }}",{locacao:$("#dataLocacao").val(), devolucao:$(this).val(), cat_id:$("#marcaoi").val()}, function(data){
+           $('#idVeiculo').empty();
+           $('#idVeiculo').append('<option value = "">Selecione o modelo do Veiculo</option>');
+
+           $('#pagamento-div').empty();
+           $.each(data, function(index, subcatObj){
+                $('#idVeiculo').append('<option value = "'+subcatObj.idV+'">'+subcatObj.modelo+'</option>');
+                $('#pagamento-div').append('<input name="pagamento" type="text" id="pagamento" class="form-control" readonly="readonly" value="'+(subcatObj.valor_aluguel *diffDays )+'" />');
+           });
+        });
+    });
+
     $('#marcaoi').on('change',function(e){
         var cat_id = e.target.value; 
        //ajax
-         $.get("{{url('/ajax-marca1/') }}",{cat_id:$(this).val()}, function(data){
+         $.get("{{url('/ajax-marca1/') }}",{locacao:$("#dataLocacao").val(), devolucao:$("#dataDevolucao").val(), cat_id:$(this).val()}, function(data){
            $('#idVeiculo').empty();
            $('#idVeiculo').append('<option value = "">Selecione o modelo do Veiculo</option>');
            $.each(data, function(index, subcatObj){

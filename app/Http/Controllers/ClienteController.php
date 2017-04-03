@@ -49,16 +49,25 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
+public function limpar($entrada)
+    {
+        $entrada = trim($entrada);
+        $entrada = str_replace(".", "", $entrada);
+        $entrada = str_replace("(", "", $entrada);
+        $entrada = str_replace(")", "", $entrada);
+        $entrada = str_replace("-", "", $entrada);
+        $entrada = str_replace(" ", "", $entrada);
+        return $entrada;
+    }
     public function store(AdminRequest $request)
     {
         $Cliente = new User;
         $Cliente->name = $request->name;
         $Cliente->email = $request->email;
-        $Cliente->cpf = $request->cpf;
+        $Cliente->cpf = $this->limpar($request->cpf);
         $Cliente->password = bcrypt($request->password );
         $Cliente->endereco = $request->endereco;
-        $Cliente->telefone = $request->telefone;
+        $Cliente->telefone = $this->limpar($request->telefone);
         $Cliente->perfil = $request->perfil;
         $Cliente->save();     
         return redirect()->route('clientes.create')->with('status', 'Funcionário Cadastrado com Sucesso!');        
@@ -109,9 +118,9 @@ class ClienteController extends Controller
 
             $Cliente->name = $request->name;
             $Cliente->email = $request->email;
-            $Cliente->cpf = $request->cpf;
+            $Cliente->cpf = $this->limpar($request->cpf);
             $Cliente->endereco = $request->endereco;
-            $Cliente->telefone = $request->telefone;
+            $Cliente->telefone = $this->limpar($request->telefone);
             $Cliente->save();
 
             return redirect('home')->with('clienteAt', 'Cliente Atualizado com Sucesso!'); 

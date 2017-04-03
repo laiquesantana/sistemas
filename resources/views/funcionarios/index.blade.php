@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <a href="{{ route('clientes.create') }} " class="btn btn-primary">Cadastrar Funcionario</a>
             <div class="panel panel-primary">
                 <div class="panel-heading">Usuários</div>
@@ -17,14 +17,15 @@
                                 'url' => 'search',
                                 'class' => 'navbar-form navbar-right', 'role'=>'search'                          
                             ]) !!}
-                         <div class="col-md-12">   
+                         <div class="col-md-11">   
                            <div class="input-group custom-search-form">
-                                <input type="text" name="search" class="form-control" placeholder= "buscando..">
+                                <input type="text" name="search" class="form-control" placeholder= "buscar..">
                                 <span class ="input-group-btn"><button class="btn btn-default" type="submit">Ir!</button>
                                 </span> 
                             </div>
-                            {{ Form::close() }}
+                            
                          </div>
+                      {{ Form::close() }}
                         <table class="table table-hover table-bordered user">
                             <thead>
                                 <th>ID</th>

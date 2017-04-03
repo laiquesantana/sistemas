@@ -9,28 +9,24 @@ use Illuminate\Support\Facades\Input;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-$modelo= DB::table('veiculos')->select("veiculos.id AS idV", "modelo", "marca", "disponivel", "deleted_at")->leftJoin('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')->whereRaw($query." deleted_at is null and (disponivel = 1 or disponivel is null)")->get();
-
-
-
-   $modelo= DB::select('SELECT * FROM veiculos left join alugueis on alugueis.idVeiculo = veiculos.id
-						WHERE marca = '.$cat_id.' AND deleted_at is null and disponivel = 1 or disponivel is null');
-
-
-    $modelo= DB::table('veiculos')->select("veiculos.id AS idV", "modelo", "marca", "disponivel", "deleted_at")->leftJoin('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')->where(DB::raw('marca = '+$cat_id+" AND deleted_at is null and disponivel = 1 or disponivel is null") )->get();
-
-    $modelo= DB::table('veiculos')->select("veiculos.id AS idV", "modelo", "marca", "disponivel", "deleted_at")->join('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')->where('marca', '=', $cat_id)->where('deleted_at', 'is', null)->where('disponivel', '=', '1')->orwhere('disponivel', 'is', null)->get();
+$modelo= DB::table('veiculos')->select("veiculos.id AS idV", "modelo", "marca", "disponivel", "deleted_at", "ativo")->leftJoin('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')->whereRaw($query." deleted_at is null and ativo = 1 and (disponivel = 1 or disponivel is null) ")->groupBy("idV", "modelo", "marca", "disponivel", "deleted_at", "ativo")->get();
 */
-
 
 Route::get('/ajax-marca1',function() {
      $cat_id = Input::get('cat_id');
-     if($cat_id)
-     	$query = "marca = '". $cat_id. "' AND";
-     else
-     	$query = '';
+     $locacao = Input::get('locacao');
+     $devolucao = Input::get('devolucao');
+
+     isset($cat_id) ? $query = "marca = '". $cat_id ."' AND" : $query = '';
+     isset($locacao) ? $query .= "( (dataDevolucao < '". $locacao ."' OR" : $query .= '';
+     isset($devolucao) ? $query .= " datalocacao > '". $devolucao ."') OR (dataDevolucao is null AND dataLocacao is null) ) AND" : $query .= '';
+
      
-     $modelo= DB::table('veiculos')->select("veiculos.id AS idV", "modelo", "marca", "disponivel", "deleted_at")->leftJoin('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')->whereRaw($query." deleted_at is null and (disponivel = 1 or disponivel is null)")->get();
+     $modelo= DB::table('veiculos')
+     ->select("veiculos.id AS idV", "modelo", "marca", "deleted_at", "ativo", "valor_aluguel")
+     ->leftJoin('alugueis', 'alugueis.idVeiculo', '=', 'veiculos.id')
+     ->whereRaw($query." deleted_at is null ")
+     ->groupBy("idV", "modelo", "marca", "deleted_at", "ativo", "valor_aluguel")->get();
 
         return Response::json($modelo);
 

@@ -28,10 +28,9 @@
                                 <th>Data de Locação</th>
                                 <th>Data de Devolução</th>
                                 <th>Valor</th>
-                                <th>Disponível</th>
+                             {{--    <th>Disponível</th> --}}
                                 @if(Auth::user()->perfil != "user")
                                     <th>Devoluções</th>
-                                    <th>Excluir</th>
                                 @endif
                             </thead>
                             <tbody>
@@ -46,7 +45,7 @@
                                     <td>{{$aluguel->dataLocacao}}</td>
                                     <td>{{$aluguel->dataDevolucao}}</td>
                                     <td>{{$aluguel->pagamento}}</td>
-                                    <td>
+                                    {{-- <td>
                                     @if ($aluguel->disponivel === 1)
                                      <ul>
                                          Sim </ul>
@@ -54,17 +53,16 @@
                                      <ul>
                                          Não </ul>
                                      @endif
-                                    </td>
+                                    </td> --}}
                                     @if(Auth::user()->perfil != "user")
-                                        <td> <a href="{{route('aluguel.devolucao', $aluguel->idAluguel) }}" class="btn btn-primary">Devolver</a></td>
-
+                                    
                                         <td> <form action="{{ route('alugeis.destroy', $aluguel->idAluguel) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
 
-                                                    <intput type="submit" class="btn btn-danger">
-                                                        <i class="fa fa-btn fa-trash"></i>Excluir
-                                                    </intput>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fa fa-btn fa-trash"></i>Devolver
+                                                    </button>
                                         </form></td>
                                     @endif
                                 </tr>

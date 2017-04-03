@@ -69,7 +69,12 @@ class AluguelController extends Controller
         $Alugel->dataDevolucao = $request->dataDevolucao;
         $Alugel->pagamento = $request->pagamento;
         $Alugel->disponivel = 0;
-        $Alugel->save();     
+        $Alugel->save();   
+
+        DB::table('veiculos')
+            ->where('id', $request->idVeiculo)
+            ->update(array('ativo' => 0));
+
         return redirect()->route('alugeis.index')->with('status', 'Locação Realizada com Sucesso!');        
     }
 
@@ -132,6 +137,13 @@ class AluguelController extends Controller
         DB::table('alugueis')
             ->where('id', $id)
             ->update(array('disponivel' => 1));
+
+        $aluguel=Aluguel::find($id);
+
+
+        DB::table('veiculos')
+            ->where('id', $aluguel->idVeiculo )
+            ->update(array('ativo' => 1));
             
         return redirect()->route('alugeis.index')->with('status, Veiculo Devolvido');
     }

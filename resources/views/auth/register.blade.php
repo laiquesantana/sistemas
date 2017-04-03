@@ -27,7 +27,7 @@
                         <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                             {{ Form::label('cpf', 'CPF:', ['class' => 'col-md-4 control-label']) }}
                             <div class="col-md-6">
-                                 {{ Form::text('cpf',  null , ['class' => ' form-control']) }}
+                                 {{ Form::text('cpf',  null , ['class' => ' form-control cpf']) }}
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -55,7 +55,7 @@
                             {{ Form::label('telefone', 'Telefone:', ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
-                                 {{ Form::text('telefone',  null , ['class' => ' form-control']) }}
+                                 {{ Form::text('telefone',  null , ['class' => ' form-control telefone']) }}
 
                                 @if ($errors->has('telefone'))
                                     <span class="help-block">

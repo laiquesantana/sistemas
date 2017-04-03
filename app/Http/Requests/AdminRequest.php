@@ -30,9 +30,9 @@ class AdminRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
-            'cpf' =>  'required|min:11|numeric|unique:users',
+            'cpf' =>  'required|min:11|unique:users',
             'endereco' => 'required',
-            'telefone' => 'required|numeric',
+            'telefone' => 'required',
             'password' => 'required|confirmed|min:6',
             //
         ];
@@ -50,14 +50,12 @@ private function getSegmentFromEnd($position_from_end = 1) {
            'name.required' => "O campo Nome é obrigatório!",
            'email.unique' => "O Email já está cadastrado!",
            'cpf.min' => "O campo Cpf deve ter no mínimo 11 caracters!",
-           'cpf.numeric' => "O campo Cpf deve ser um número!",
            'cpf.required' => "O campo Cpf é obrigatório!",
            'cpf.unique' => "O CPF já está Cadastrado!",
            'email.required' => "O campo Email é obrigatorio!",
            'email.email' => "O Email deve ser um endereço de e-mail válido!",
            'endereco.required' => "O campo Endereco é obrigatório!",
            'telefone.required'=> 'O campo Telefone é obrigatório!!',
-           'telefone.numeric'=> 'O campo Telefone deve ser um número!!',
            'password.required'=> 'O campo Senha é obrigatório!!',
            'password.confirmed'=>'A Confirmação de Senha nao confere!',
            'password.min' => 'A senha deve ter no mínimo 6 caracters'
