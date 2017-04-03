@@ -43,9 +43,9 @@
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>@if ($user->perfil=== 'user')
+                                    <td>@if ($user->perfil==='funcionario')
                                      <ul>Funcionário</ul>
-                                     @else ($user->perfil!= 'admin')
+                                     @else ($user->perfil=== 'admin')
                                      <ul>Administrador</ul>
                                      @endif
                                     </td>

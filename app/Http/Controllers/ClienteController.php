@@ -8,6 +8,7 @@ use View;
 use App\Cliente;
 use Redirect;
 use App\Http\Requests\AdminRequest;
+use App\User;
 
 class ClienteController extends Controller
 {
@@ -18,13 +19,15 @@ class ClienteController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('auth');
-       // $this->middleware('AcessControl');
+        $this->middleware('auth');
+        $this->middleware('AcessFunc');
     }
 
     public function index()
     {
-         $clientes = DB::table('clientes')->paginate(10);
+         //$Clientes2= DB::table('users')->select('*')->where('perfil', '=', $cat_id)->where('deleted_at', '=', NULl)->get();
+         $clientes = DB::table('users')->where('perfil', '=', 'user')->paginate(10);
+         
          //dd($users);
 
         return View::make('clientes.index', compact('clientes'));
@@ -46,16 +49,21 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(AdminRequest $request)
     {
-        $Cliente = new Cliente;
-        $Cliente->nome = $request->nome;
+
+
+        $Cliente = new User;
+        $Cliente->name = $request->name;
         $Cliente->email = $request->email;
         $Cliente->cpf = $request->cpf;
+        $Cliente->password = bcrypt($request->password );
         $Cliente->endereco = $request->endereco;
         $Cliente->telefone = $request->telefone;
+        $Cliente->perfil = $request->perfil;
         $Cliente->save();     
-        return redirect()->route('clientes.create')->with('status', 'Cliente Cadastrado com Sucesso!');        
+        return redirect()->route('clientes.create')->with('status', 'Funcionário Cadastrado com Sucesso!');        
     }
 
     /**
@@ -77,7 +85,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        $Clientes = Cliente::find($id);
+        $Clientes = User::find($id);
             if (is_null($Clientes)){
                 ?>
                 <script>alert('Usuário Está Desabilitado')</script>
@@ -98,7 +106,7 @@ class ClienteController extends Controller
      */
     public function update(AdminRequest $request, $id)
     {
-          $Cliente = Cliente::find($id);
+          $Cliente = User::find($id);
          //dd($users);
 
             $Cliente->nome = $request->nome;
@@ -120,13 +128,13 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         
-            $cliente=Cliente::find($id);
+            $cliente=User::find($id);
             if (is_null($cliente)){
                echo "Cliente Invalido";
                return Redirect::route('clientes.index')->with('Cliente , já esta inativo');
            }
 
-           Cliente::find($id)->delete();
+           User::find($id)->delete();
 
            return redirect()->route('clientes.index')->with('sucesso, Cliente deletado com sucesso');
 
@@ -136,7 +144,7 @@ class ClienteController extends Controller
        public function restore($id)
        {
 
-         Cliente::onlyTrashed()
+         User::onlyTrashed()
          ->where('id', $id)
          ->restore();
          return redirect()->route('clientes.index');

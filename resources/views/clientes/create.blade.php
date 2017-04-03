@@ -36,9 +36,9 @@
 
                                     
                                     <div class="form-group">
-                                            {{ Form::label('nome', 'Nome:', ['class' => 'col-sm-3 control-label']) }}
+                                            {{ Form::label('name', 'Nome:', ['class' => 'col-sm-3 control-label']) }}
                                             <div class="col-sm-9">
-                                                {{ Form::text('nome',  null , ['class' => ' form-control']) }}
+                                                {{ Form::text('name',  null , ['class' => ' form-control']) }}
                                             </div>
                                     </div>
 
@@ -74,18 +74,32 @@
                                             </div>
                                     </div>
 
+                               <div class="form-group">
 
+                                            {{ Form::label('password', 'Senha:',  ['class' => 'col-sm-3 control-label']) }}
+                                            <div class="col-sm-9">
+                                             {{ Form::password('password', ['class' => 'awesome form-control']) }}
+                                            </div>
+                                    </div>
 
+                                    <div class="form-group">
 
-                                
+                                            {{ Form::label('password', 'Confirmar Senha:',  ['class' => 'col-sm-3 control-label']) }}
+                                            <div class="col-md-9">
+                                              {{ Form::password('password_confirmation', ['class' => 'awesome form-control']) }}
+                                            </div>
+                                    </div>
+
+                                        <INPUT TYPE="hidden" NAME="perfil" id ="perfil" VALUE="funcionario">                       
 
                                     <div class="form-group">
                                       <div class="col-sm-9">
                                         {{ Form::submit('Cadastrar', array('class' => 'btn btn-info')) }}
                                         {{ link_to_route('clientes.store', 'Cancelar',array('class' => 'btn btn-info')) }}
                                       </div>
-
                                     </div>
+
+
 
                             {{ Form::close() }}
                     </div>

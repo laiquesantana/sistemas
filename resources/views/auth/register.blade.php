@@ -24,6 +24,46 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
+                            {{ Form::label('cpf', 'CPF:', ['class' => 'col-md-4 control-label']) }}
+                            <div class="col-md-6">
+                                 {{ Form::text('cpf',  null , ['class' => ' form-control']) }}
+
+                                @if ($errors->has('cpf'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cpf') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>  
+                        
+                        <div class="form-group{{ $errors->has('Endereço') ? ' has-error' : '' }}">
+                            {{ Form::label('endereco', 'Endereço:', ['class' => 'col-md-4 control-label']) }}
+
+                            <div class="col-md-6">
+                                 {{ Form::text('endereco',  null , ['class' => ' form-control']) }}
+
+                                @if ($errors->has('Endereço'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Endereço') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>  
+
+                        <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
+                            {{ Form::label('telefone', 'Telefone:', ['class' => 'col-md-4 control-label']) }}
+
+                            <div class="col-md-6">
+                                 {{ Form::text('telefone',  null , ['class' => ' form-control']) }}
+
+                                @if ($errors->has('telefone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>                
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 

@@ -17,13 +17,13 @@ class FuncionarioController extends Controller
      */
       public function __construct()
     {
-      //  $this->middleware('auth');
-       // $this->middleware('AcessControl');
+       $this->middleware('auth');
+       $this->middleware('AcessControl');
     }
 
     public function index()
     {
-         $users = DB::table('users')->paginate(5);
+         $users = DB::table('users')->where('perfil', '!=', 'user')->paginate(10);
          //dd($users);
 
         return View::make('funcionarios.index', compact('users'));
@@ -53,7 +53,7 @@ class FuncionarioController extends Controller
    public function search(Request $request){
 
             $term=$request->search;
-            $users= DB::table('users')->where('name','LIKE','%'.$term.'%')->paginate(6);
+            $users= DB::table('users')->where('name','LIKE','%'.$term.'%')->where('perfil', '!=', 'user')->paginate(6);
             return View::make('funcionarios.index', compact('users'));
     }
 
@@ -94,6 +94,7 @@ class FuncionarioController extends Controller
     public function edit($id)
     {
           $users = User::find($id);
+          
             if (is_null($users)){
                 ?>
                 <script>alert('Usuário Está Desabilitado')</script>
@@ -116,7 +117,7 @@ class FuncionarioController extends Controller
     public function update(Request $request, $id)
     {
          $users = User::find($id);
-         //dd($users);
+        
 
             $users->name = $request->name;
             if(!empty($request->password)){
@@ -126,7 +127,7 @@ class FuncionarioController extends Controller
             $users->perfil = $request->perfil;
             $users->save();
 
-            return redirect('home')->with('status', 'Usuário Atualizado com Sucesso!');
+            return redirect('home')->with('status', 'Funcionario Atualizado com Sucesso!');
     }
 
     /**

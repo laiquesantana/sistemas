@@ -50,8 +50,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'cpf' =>    'required|numeric|min:11|unique:users',
+            'endereco' => 'required',
+            'telefone' => 'required|numeric',
             'password' => 'required|min:6|confirmed',
-        ]);
+            ]);
     }
 
     /**
@@ -65,7 +68,10 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'cpf' =>    $data['cpf'],
+            'endereco' => $data['endereco'],
+            'telefone' => $data['telefone'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
     }
 }

@@ -34,7 +34,7 @@
                                         <div class="col-sm-9">
                                             {{ Form::radio('perfil', 'admin')}}
                                             {{ Form::label('perfil', 'Sim') }}
-                                            {{ Form::radio('perfil', 'user')}}
+                                            {{ Form::radio('perfil', 'funcionario')}}
                                             {{ Form::label('perfil', 'Não' ) }}
                                         </div>
                                     </div>

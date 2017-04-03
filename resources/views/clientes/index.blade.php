@@ -11,6 +11,7 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered clientes">
                             <thead>
+                                <th>N°</th>
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>CPF</th>
@@ -24,7 +25,8 @@
                             <tbody>
                                 @foreach ($clientes as $cliente )
                                 <tr> 
-                                    <td>{{$cliente->nome}}</td>
+                                    <td>{{$cliente->id}}</td>
+                                    <td>{{$cliente->name}}</td>
                                     <td>{{$cliente->email}}</td>
                                     <td>{{$cliente->cpf}}</td>
                                     <td>{{$cliente->endereco}}</td>

@@ -24,7 +24,7 @@ class AluguelController extends Controller
         //$marcas= DB::table('veiculos')->where('deleted_at', '=', NULl)->get();
         $Clientes =DB::table('clientes')->where('deleted_at', '=', NULl)->get();
        // $Clientes =DB::table('clientes')->pluck('nome','id');
-        return View::make('alugel.index', compact('Clientes','marcas'));
+        return View::make('alugeis.index', compact('Clientes','marcas'));
         
     }
 

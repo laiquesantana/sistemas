@@ -49,14 +49,20 @@
                   <ul class="nav navbar-nav">
 
                         @if (Auth::check())
-                            <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>
-                            <li><a href="{{ route('alugeis.index') }}">Locação de Veiculos</a></li>
-                            <li><a href="{{ url('/clientes') }}">Clientes</a></li>
-                            <li><a href="{{ route('clientes.create') }}">Cadastrar Cliente</a></li>
+                                                
+                            <li><a href="{{ url('/clientes') }}">Clientes</a></li>                           
                         @endif
-                         @if (Auth::check()and Auth::user()->perfil === 'admin')
-                            <li><a href="{{ url('/funcionarios') }}">Usuários</a></li>
+                         @if (Auth::check()and Auth::user()->perfil != 'user')
+                            <li><a href="{{ url('/veiculos') }}">Veiculos</a></li>  
+                            <li><a href="{{ route('alugeis.index') }}">Locação de Veiculos</a></li>   
                          @endif
+
+                         @if (Auth::check()and Auth::user()->perfil === 'admin')
+                            <li><a href="{{ route('clientes.create') }}">Cadastrar Funcionario</a></li>
+                            <li><a href="{{ url('/funcionarios') }}">Funcionarios</a></li>
+                         @endif
+                         
+
                     </ul>
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
