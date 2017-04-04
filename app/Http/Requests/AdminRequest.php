@@ -30,7 +30,7 @@ class AdminRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email'.$this->getSegmentFromEnd().',id',
-            'cpf' =>  'required|min:11|unique:users,cpf',.$this->getSegmentFromEnd().',id',
+            'cpf' =>  'required|min:11|unique:users,cpf'.$this->getSegmentFromEnd().',id',
             'endereco' => 'required',
             'telefone' => 'required',
             'password' => 'required|confirmed|min:6',

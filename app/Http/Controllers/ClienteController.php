@@ -29,7 +29,7 @@ class ClienteController extends Controller
          //$Clientes2= DB::table('users')->select('*')->where('perfil', '=', $cat_id)->where('deleted_at', '=', NULl)->get();
          $clientes = DB::table('users')->where('perfil', '=', 'user')->paginate(10);
          
-         //dd($users);
+         
 
         return View::make('clientes.index', compact('clientes'));
     }
@@ -62,6 +62,7 @@ public function limpar($entrada)
     }
     public function store(AdminRequest $request)
     {
+        die("asdsa");
         $Cliente = new User;
         $Cliente->name = $request->name;
         $Cliente->email = $request->email;
