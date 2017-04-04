@@ -11,6 +11,7 @@ use App\Cliente;
 use App\Veiculo;
 use Illuminate\Support\Facades\Input;
 use Response;
+use App\Http\Requests\AluguelRequest;
 class AluguelController extends Controller
 {
     /**
@@ -65,9 +66,9 @@ class AluguelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AluguelRequest $request)
     {
-
+       
         $Alugel = new Aluguel;
         $Alugel->idVeiculo = $request->idVeiculo;
         $Alugel->idCliente = $request->idCliente;
@@ -75,6 +76,7 @@ class AluguelController extends Controller
         $Alugel->dataDevolucao = $request->dataDevolucao;
         $Alugel->pagamento = $request->pagamento;
         $Alugel->disponivel = 0;
+
         $Alugel->save();   
 
         DB::table('veiculos')
