@@ -72,8 +72,10 @@ class AluguelController extends Controller
         $Alugel = new Aluguel;
         $Alugel->idVeiculo = $request->idVeiculo;
         $Alugel->idCliente = $request->idCliente;
-        $Alugel->dataLocacao = $request->dataLocacao;
-        $Alugel->dataDevolucao = $request->dataDevolucao;
+        $Alugel = $this->convertDateField(['dataLocacao', 'dataLocacao'], $Alugel);
+        dd($alugel);
+        //$Alugel->dataLocacao = $request->dataLocacao;
+        //$Alugel->dataDevolucao = $request->dataDevolucao;
         $Alugel->pagamento = $request->pagamento;
         $Alugel->disponivel = 0;
 
