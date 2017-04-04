@@ -28,7 +28,7 @@ return [
         'array'   => ':attribute deve ter entre :min e :max itens.',
     ],
     'boolean'              => ':attribute deve ser verdadeiro ou falso.',
-    'confirmed'            => 'A confirmação de :attribute não confere.',
+    'confirmed'            => 'A confirmação de Senha não confere.',
     'date'                 => ':attribute não é uma data válida.',
     'date_format'          => ':attribute não confere com o formato :format.',
     'different'            => ':attribute e :other devem ser diferentes.',
@@ -52,7 +52,7 @@ return [
     'min'                  => [
         'numeric' => ':attribute deve ser no mínimo :min.',
         'file'    => ':attribute deve ter no mínimo :min kilobytes.',
-        'string'  => ':attribute deve ter no mínimo :min caracteres.',
+        'string'  => 'Senha deve ter no mínimo :min caracteres.',
         'array'   => ':attribute deve ter no mínimo :min itens.',
     ],
     'not_in'               => 'O :attribute selecionado é inválido.',

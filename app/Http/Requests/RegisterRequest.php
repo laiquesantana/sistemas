@@ -7,7 +7,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Cliente;
 
-class AdminRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,8 @@ class AdminRequest extends FormRequest
 
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email'.$this->getSegmentFromEnd().',id',
-            'cpf' =>  'required|min:11|unique:users,cpf',.$this->getSegmentFromEnd().',id',
+            'email' => 'required|email|unique:users,email'
+            'cpf' =>  'required|min:11|unique:users,cpf'
             'endereco' => 'required',
             'telefone' => 'required',
             'password' => 'required|confirmed|min:6',

@@ -8,6 +8,7 @@ use View;
 use App\Veiculo;
 use Redirect;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\VeiculoRequest;
 
 class VeiculosController extends Controller
 {
@@ -46,7 +47,7 @@ class VeiculosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VeiculoRequest $request)
     {
         $Veiculo = new Veiculo;
         $Veiculo->ano = $request->ano;
@@ -98,7 +99,7 @@ class VeiculosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VeiculoRequest $request, $id)
     {
         $Veiculo = Veiculo::find($id);
 

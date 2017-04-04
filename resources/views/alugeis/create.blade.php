@@ -49,6 +49,19 @@
 					</div>
 				@endif
 				
+			<div class="form-group">
+				{{ Form::label('dataLocacao', 'Data de Locação :', ['class' => 'col-sm-3 control-label']) }}
+				<div class="col-sm-3">
+					{{ Form::date('dataLocacao', null, ['class' => 'form-control', 'required']) }}
+				</div>
+			</div>	
+			<div class="form-group">
+				{{ Form::label('dataDevolucao', 'Data de Devolução :', ['class' => 'col-sm-3 control-label']) }}
+				<div class="col-sm-3">
+					{{ Form::date('dataDevolucao', null, ['class' => 'form-control', 'required']) }}
+				</div>
+			</div>   
+				
 
 			<div class="form-group">
 				{{ Form::label('marca', 'Marca :', ['class' => 'col-sm-3 control-label'])}}
@@ -61,6 +74,10 @@
 					</select>
 				</div>              
 			</div>
+
+
+
+
 			<div class="form-group">
 				{{ Form::label('modelo', 'Modelo :', ['class' => 'col-sm-3 control-label']) }}
 				<div class="col-md-5">
@@ -89,19 +106,7 @@
 		    	</div>
 		    </div> 
 
-		    <div class="form-group">
-		    	{{ Form::label('dataLocacao', 'Data de Locação :', ['class' => 'col-sm-3 control-label']) }}
-		    	<div class="col-sm-3">
-		    		{{ Form::date('dataLocacao', null, ['class' => 'form-control', 'required']) }}
-		    	</div>
-		    </div>	
-		    <div class="form-group">
-		    	{{ Form::label('dataDevolucao', 'Data de Devolução :', ['class' => 'col-sm-3 control-label']) }}
-		    	<div class="col-sm-3">
-		    		{{ Form::date('dataDevolucao', null, ['class' => 'form-control', 'required']) }}
-		    	</div>
-		    </div>   
-
+		 
 
 		    <div class="form-group">
 		    	{{ Form::label('pagamento', 'Valor Total :', ['class' => 'col-sm-3 control-label']) }}

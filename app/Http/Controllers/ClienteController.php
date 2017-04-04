@@ -8,6 +8,7 @@ use View;
 use App\Cliente;
 use Redirect;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\AdminRequestEdit;
 use App\User;
 
 class ClienteController extends Controller
@@ -111,10 +112,10 @@ public function limpar($entrada)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminRequestEdit $request, $id)
     {
           $Cliente = User::find($id);
-         //dd($users);
+   
 
             $Cliente->name = $request->name;
             $Cliente->email = $request->email;
