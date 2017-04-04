@@ -12,18 +12,18 @@
                 <div class="panel-body">
                     <div class="table-responsive">
 
-                      {!! Form::open([                            
+                      {!! Form::open([
                                 'method' => 'GET',
                                 'url' => 'search',
-                                'class' => 'navbar-form navbar-right', 'role'=>'search'                          
+                                'class' => 'navbar-form navbar-right', 'role'=>'search'
                             ]) !!}
-                         <div class="col-md-11">   
+                         <div class="col-md-11">
                            <div class="input-group custom-search-form">
                                 <input type="text" name="search" class="form-control" placeholder= "buscar..">
                                 <span class ="input-group-btn"><button class="btn btn-default" type="submit">Ir!</button>
-                                </span> 
+                                </span>
                             </div>
-                            
+
                          </div>
                       {{ Form::close() }}
                         <table class="table table-hover table-bordered user">
@@ -71,7 +71,7 @@
                                 </tr>
                                 @endforeach
 
-        
+
                                    {{ $users->links() }}
                             </tbody>
                        </table>

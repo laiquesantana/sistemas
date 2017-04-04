@@ -57,8 +57,8 @@ class VeiculosController extends Controller
         $Veiculo->valor_aluguel = $request->valor_aluguel;
         $Veiculo->cor = $request->cor;
         $Veiculo->ativo = 1;
-        $Veiculo->save();     
-        return redirect()->route('veiculos.index')->with('status', 'Veiculo Cadastrado com Sucesso!');    
+        $Veiculo->save();
+        return redirect()->route('veiculos.index')->with('status', 'Veiculo Cadastrado com Sucesso!');
     }
 
     /**
@@ -110,8 +110,8 @@ class VeiculosController extends Controller
         $Veiculo->valor_aluguel = $request->valor_aluguel;
         $Veiculo->cor = $request->cor;
         $Veiculo->ativo = 1;
-        $Veiculo->save();     
-        return redirect()->route('veiculos.index')->with('status', 'Veiculo Atualizado com Sucesso!'); 
+        $Veiculo->save();
+        return redirect()->route('veiculos.index')->with('status', 'Veiculo Atualizado com Sucesso!');
     }
 
     /**

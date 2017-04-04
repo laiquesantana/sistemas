@@ -66,9 +66,9 @@ class AluguelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AluguelRequest $request)
+    public function store(Request $request)
     {
-       
+
         $Alugel = new Aluguel;
         $Alugel->idVeiculo = $request->idVeiculo;
         $Alugel->idCliente = $request->idCliente;
@@ -77,13 +77,13 @@ class AluguelController extends Controller
         $Alugel->pagamento = $request->pagamento;
         $Alugel->disponivel = 0;
 
-        $Alugel->save();   
+        $Alugel->save();
 
         DB::table('veiculos')
             ->where('id', $request->idVeiculo)
             ->update(array('ativo' => 0));
 
-        return redirect()->route('alugeis.index')->with('status', 'Locação Realizada com Sucesso!');        
+        return redirect()->route('alugeis.index')->with('status', 'Locação Realizada com Sucesso!');
     }
 
     /**
@@ -152,7 +152,7 @@ class AluguelController extends Controller
         DB::table('veiculos')
             ->where('id', $aluguel->idVeiculo )
             ->update(array('ativo' => 1));
-            
+
         return redirect()->route('alugeis.index')->with('status, Veiculo Devolvido');
     }
 

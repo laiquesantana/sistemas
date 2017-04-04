@@ -17,20 +17,28 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
+        'cpf' => $faker->numberBetween(00000000000, 99999999999),
+        'endereco' => $faker->name,
+        'telefone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'perfil' => 'user',
-        'remember_token' => str_random(10),
+        'perfil' => $faker->randomElement(['user', 'funcionario','admin']),
+        'remember_token' => $faker->randomNumber,
     ];
 });
 
-$factory->define(App\Cliente::class, function (Faker\Generator $faker) {
-   
+$factory->define(App\Veiculo::class, function (Faker\Generator $faker) {
+
+
     return [
-        'cpf' => $faker->number,
-        'nome' => $faker->name,
-        'endereco' => $faker->name,
-        'telefone' => $faker->number,
-        'email' => $faker->unique()->safeEmail,
+        'ano' => $faker->numberBetween(2010, 2080),
+        'modelo' => $faker->randomElement(['Hennessey Venom GT', 'Aston Martin One','Arash AF10 Hybrid','Zenvo ST','Koenigsegg Regera','Pagani Huayra Roadster','La Ferrari Aperta ','Bugatti Veyron Supersport','Bugatti Chiron','Aston Martin MA-RB00']),
+        'marca' => $faker->randomElement(['ford', 'nissan','toyota','ferrari','porsche','subaru','bmw','honda','mercedes-benz','audi','lexus']),
+        'placa' => $faker->randomElement(['XXT-8898', 'YYZ-6666','WTF-6665']),
+        'ativo' => 1,
+        'valor_aluguel' =>$faker->numberBetween(50, 450),
+        'cor' => $faker->randomElement(['branco', 'azul','vermelho']),
+
     ];
 });
+
